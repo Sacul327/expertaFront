@@ -1,3 +1,3 @@
-run:
-ng serve 
-:)
+cmd:
+
+ng serve
