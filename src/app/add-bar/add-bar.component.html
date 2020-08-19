@@ -1,8 +1,12 @@
 <div class="container">
+  <div class="row">
+    <div>
+      <button type="button" class="btn btn-outline-danger" routerLink="">< Volver</button>
+    </div>
     <div class="py-5 text-center">
       <h3>Por favor completar todos los campos para poder registrar el Bar</h3>
     </div>
-  
+  </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Nuevo Bar</h4>
         <form #userForm="ngForm" class="needs-validation" novalidate="" (ngSubmit)="onSubmit(userForm.value)">
@@ -21,7 +25,7 @@
                 </div>
             </div>
           <div class="mb-3">
-            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+            <label for="email">Email</label>
             <input type="email" class="form-control" name="email" placeholder="you@example.com" required ngModel>
             <div class="invalid-feedback">
               Please enter a valid email address for shipping updates.
@@ -39,7 +43,7 @@
           <div class="mb-3">
             <label for="cuit">Cuit</label>
             <input type="text" class="form-control" name="cuit" required ngModel>
-            <div class="invalid-feedback" [attr.disabled]="invalidCuit">
+            <div class="invalid-feedback" *ngIf="!validCuit">
               Cuit already in use
             </div>
           </div>
@@ -54,8 +58,8 @@
           </div>
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="parking" ngModel>
-            <label class="custom-control-label" for="save-info">Cuenta con estacionamiento</label>
+            <input type="checkbox" name="parking" ngModel>
+            <label>Cuenta con estacionamiento</label>
           </div>
           <hr class="mb-4">
           <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!userForm.valid">Agregar</button>

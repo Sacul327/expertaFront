@@ -23,8 +23,9 @@ export class AddBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  async onSubmit(data) {
+  onSubmit(data) {
     this.newPub = data;
+    this.newPub.parking = data.parking ? 1:2;
     this.validCuit = true;
     this.barService.getPubs().subscribe(result => {
       this.pubs = result;
@@ -33,13 +34,14 @@ export class AddBarComponent implements OnInit {
           this.validCuit = false;
         }
       });
+      if (this.validCuit === true) {
+        this.barService.addPubs(this.newPub).subscribe(result => this.gotoPubsList());
+      }
     });
 
-    await this.delay(200);
+    //await this.delay(200);
     
-    if (this.validCuit === true) {
-      this.barService.addPubs(this.newPub).subscribe(result => this.gotoPubsList());
-    }
+    
   }
 
   delay(ms: number) {
